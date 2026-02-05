@@ -46,7 +46,6 @@ function calculateBonusByProfit(index, total, seller) {
  * @returns {{revenue, top_products, bonus, name, sales_count, profit, seller_id}[]}
  */
 function analyzeSalesData(data, options) {
-    const { calculateRevenue, calculateBonus } = options;
     // @TODO: Проверка входных данных
 
     if (!Array.isArray(data.sellers) || data.sellers.length === 0) {
@@ -63,8 +62,21 @@ function analyzeSalesData(data, options) {
 
     // @TODO: Проверка наличия опций
 
-    if (typeof options !== "object") {
-        throw new Error('Чего-то не хватает');
+    if (typeof options !== "object" || options === null) {
+        throw new Error('Опции отсутствуют');
+    }
+
+    const { calculateRevenue, calculateBonus } = options;
+
+    if (!calculateRevenue || !calculateBonus) {
+        throw new Error('Функции отсутствуют')
+    }
+
+    if (
+        typeof calculateRevenue !== "function" ||
+        typeof calculateBonus !== "function"
+    ) {
+        throw new Error("Опции не являются функциями");
     }
 
     // @TODO: Подготовка промежуточных данных для сбора статистики
