@@ -85,9 +85,8 @@ function analyzeSalesData(data, options) {
 
     data.purchase_records.forEach(record => { // Чек
         const seller = sellerIndex[record.seller_id];
-        seller.sales_count = seller.sales_count + 1;
-
         seller.revenue = seller.revenue + record.total_amount;
+        seller.sales_count = seller.sales_count + 1;
 
         record.items.forEach(item => {
             const product = productIndex[item.sku]; // Товар
