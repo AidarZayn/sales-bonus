@@ -49,11 +49,16 @@ function analyzeSalesData(data, options) {
     const { calculateRevenue, calculateBonus } = options;
     // @TODO: Проверка входных данных
 
-    if (!data ||
-        (!Array.isArray(data.sellers) && !Array.isArray(data.customers) && !Array.isArray(data.products))
-        || (data.sellers.length === 0 && data.customers.length === 0 && data.products.length === 0)
-    ) {
-        throw new Error('Некорректные входные данные');
+    if (!Array.isArray(data.sellers) || data.sellers.length === 0) {
+        throw new Error('Некорректные входные данные для покупателей');
+    }
+
+    if (!Array.isArray(data.products) || data.products.length === 0) {
+        throw new Error('Некорректные входные данные для продуктов');
+    }
+
+    if (!Array.isArray(data.purchase_records) || data.purchase_records.length === 0) {
+        throw new Error('Некорректные входные данные для чеков');
     }
 
     // @TODO: Проверка наличия опций
