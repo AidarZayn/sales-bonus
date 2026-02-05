@@ -29,13 +29,13 @@ function calculateBonusByProfit(index, total, seller) {
     const { profit } = seller;
 
     if (index === 0) {
-        return Number(profit * bonusForSellers['first__bonus']).toFixed(2);
+        return +(profit * bonusForSellers['first__bonus']).toFixed(2);
     } else if (index === 1 || index === 2) {
-        return Number(profit * bonusForSellers['secondary__bonus']).toFixed(2);
+        return +(profit * bonusForSellers['secondary__bonus']).toFixed(2);
     } else if (index === total - 1) {
         return 0;
     } else {
-        return Number(profit * bonusForSellers['third__bonus']).toFixed(2);
+        return +(profit * bonusForSellers['third__bonus']).toFixed(2);
     }
 }
 
