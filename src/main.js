@@ -91,7 +91,7 @@ function analyzeSalesData(data, options) {
         record.items.forEach(item => {
             const product = productIndex[item.sku]; // Товар
             const cost = product.purchase_price * item.quantity;
-            const revenue = calculateSimpleRevenue(item);
+            const revenue = calculateRevenue(item);
             const profit = revenue - cost;
             seller.profit += profit;
 
