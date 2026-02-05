@@ -122,7 +122,7 @@ function analyzeSalesData(data, options) {
         seller.bonus = Number(calculateBonus(index, sellerStats.length, seller));
         seller.top_products = Object.entries(seller.products_sold)
             .map(([sku, quantity]) => ({sku, quantity}))
-            .sort((a, b) => {b.quantity - a.quantity})
+            .sort((a, b) => b.quantity - a.quantity)
             .slice(0, 10);
     });
 
@@ -135,7 +135,7 @@ function analyzeSalesData(data, options) {
             profit: +seller.profit.toFixed(2),
             sales_count: seller.sales_count,
             top_products: seller.top_products,
-            bonus: Number(seller.bonus).toFixed(2),
+            bonus: +seller.bonus.toFixed(2),
         }
     ));
 }
